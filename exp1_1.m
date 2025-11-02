@@ -3,7 +3,7 @@ syms t;
 syms w;
 f_h=10;
 f=sin(2*pi*f_h*t)/t;
-FT=fourier(f,w);
+FT=fourier(f,2*pi*w);
 
 figure(1);
 

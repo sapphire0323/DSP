@@ -3,7 +3,7 @@ syms t;
 syms w;
 f_q=100;
 f=exp(-100*t)*sin(2*pi*f_q*t)*heaviside(t);
-FT=fourier(f,w);
+FT=fourier(f,2*pi*w);
 
 figure(1);
 
@@ -14,7 +14,8 @@ ylabel('x(t)');
 title('时域波形图');
 
 subplot(2,1,2);
-fplot(abs(FT)*200,[-2000,2000]);
+fplot(abs(FT)*200,[-400,400]);
+ylim([0,1]);
 xlabel('频率(Hz)');
 ylabel('幅度归一化');
 title('幅频特性图');  
@@ -23,12 +24,12 @@ F_w=@(w)(abs(-1i./(2*(w.*1i-pi*200i+100))+1i./(2*(w.*1i +pi*200i+100)))).^2;
 
 E=integral(F_w,-2000,2000)/(2*pi);
 E_0=0.95*E;
-for i=1:2000
+for i=1:0.01:2000
     if(integral(F_w,-i,i)/(2*pi)>=0.95*E_0)
         break;
     end
 end
-i %取样频率f_s
+i/(2*pi) %取样频率f_s
 
 figure(2);
 f_s=[f_q,4*f_q,6*f_q,10*f_q];

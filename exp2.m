@@ -24,8 +24,9 @@ for k=1:4
         DFT(k)=x_n(n)*exp(-1i*pi/2*(n-1)*(k-1))+DFT(k);
     end
     hold on;
-    stem(k-1,abs(DFT(k)));
+    stem(k-1,abs(DFT(k)),"filled",'r');
     title('幅频特性图(DFT)');  
+    ylabel('幅度');
 end
 
 DTFT_rebuild=zeros(1,1001);
